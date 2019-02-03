@@ -4,6 +4,7 @@ import requests
 from splinter import Browser
 import pandas as pd
 import numpy as np
+import time
 
 def scrape():
     scrape_dict = {}
@@ -45,7 +46,7 @@ def scrape():
     nasa_images_url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
     browser.visit(nasa_images_url)
     browser.find_by_css('.button').first.click()
-    time.sleep(1)
+    time.sleep(3)
     browser.find_by_css('.button').last.click()
     partial_link = browser.find_by_css('.download_tiff').last.value.split(" ")[2]
     browser.click_link_by_partial_href(partial_link)
@@ -67,8 +68,13 @@ def scrape():
         url_list.append(img_url)
         browser.back()
     browser.quit()
+    hemisphere_image_urls = []
+    for hemisphere, url in zip(hemisphere_list, url_list):
+        hemisphere_dict = {"title": hemisphere, "url": url}
+        hemisphere_image_urls.append(hemisphere_dict)
+    hemisphere_image_urls
     # Update dictionary
-    scrape_dict["hemisphere_images"] = hemisphere_list
+    scrape_dict["hemisphere_images"] = hemisphere_image_urls
     
     # Scrape weather conditions from Mars Weather Twitter
     twitter_url = "https://twitter.com/marswxreport?lang=en"
@@ -77,12 +83,12 @@ def scrape():
     tweets = twitter_soup.find_all('div', class_ = "content")
     weather_only_tweets = []
     for tweet in tweets:
-    username = tweet.find('span', class_ = "username u-dir u-textTruncate")
-    if username.text == "@MarsWxReport":
-        tweet_content = tweet.find('p', class_ = "TweetTextSize TweetTextSize--normal js-tweet-text tweet-text").text.strip()
-        report_test = tweet_content.split(" ")
-        if report_test[0] == "Sol":
-            weather_only_tweets.append(tweet_content)
+        username = tweet.find('span', class_ = "username u-dir u-textTruncate")
+        if username.text == "@MarsWxReport":
+            tweet_content = tweet.find('p', class_ = "TweetTextSize TweetTextSize--normal js-tweet-text tweet-text").text.strip()
+            report_test = tweet_content.split(" ")
+            if report_test[0] == "Sol":
+                weather_only_tweets.append(tweet_content)
     mars_weather = weather_only_tweets[0]
     # Update dictionary
     scrape_dict["mars_weather"] = mars_weather
@@ -94,6 +100,14 @@ def scrape():
     facts_html = facts_df.to_html(header = False, index = False).replace("\n", "")
     # Update dictionary
     scrape_dict["mars_facts"] = facts_html
+    
+    return scrape_dict
+
+    # Connect to MongoDB
+    # conn = 'mongodb://localhost:27017'
+    # client = pymongo.MongoClient(conn)
+    # db = client.mars_db
+    # collection = mars_db.items
 
 
     
