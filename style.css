@@ -1,0 +1,53 @@
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 24px;
+}
+
+a {
+  color: black;
+}
+
+a.dropdown-toggle:hover {
+  background-color: lightgrey !important;
+} 
+
+.img-fluid {
+  max-width: 100%;
+}
+
+#summary-text {
+  font-size: 20px;
+  position: relative;
+}
+
+#max-temp-figure,
+#cloudiness-figure, 
+#humidity-figure,
+#wind-speed-figure {
+  float: left;
+}
+
+#toggle-divider {
+  visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    background-color: darkcyan !important; 
+    font-size: 75%;
+  }
+  
+  .navbar-nav {
+    background-color: white !important;
+  }
+
+  #summary-text {
+    font-size: 12px;
+  }
+
+  #toggle-divider {
+    visibility: visible;
+    padding: 10px;
+    width: 90%;
+  }
+}

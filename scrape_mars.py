@@ -5,9 +5,13 @@ from splinter import Browser
 import pandas as pd
 import numpy as np
 import time
+import datetime
 
 def scrape():
     scrape_dict = {}
+
+    # Update dictionary with scrape time
+    scrape_dict["scrape_time"] = str(datetime.datetime.now())
 
     # Get most current news story from NASA's mars site
     nasa_news_url = "https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest"
@@ -102,12 +106,6 @@ def scrape():
     scrape_dict["mars_facts"] = facts_html
     
     return scrape_dict
-
-    # Connect to MongoDB
-    # conn = 'mongodb://localhost:27017'
-    # client = pymongo.MongoClient(conn)
-    # db = client.mars_db
-    # collection = mars_db.items
 
 
     
