@@ -22,7 +22,7 @@ def scrape():
                 title_list.append(title)
         except Exception as e:
             return e
-    first_title = title_list[0]
+    news_title = title_list[0]
     # Get first paragraph
     p_results = nasa_soup.find_all('div', class_="rollover_description_inner")
     p_list = []
@@ -33,10 +33,10 @@ def scrape():
                 p_list.append(par)
         except Exception as e:
             return e
-    first_par = p_list[0]
+    news_p = p_list[0]
     # Update dictionary
-    scrape_dict["mars_news_title"] = first_title
-    scrape_dict["mars_news_p"] = first_par
+    scrape_dict["mars_news_title"] = news_title
+    scrape_dict["mars_news_p"] = news_p
 
     # Create splinter browser instance
     executable_path = {'executable_path':'C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe'}
