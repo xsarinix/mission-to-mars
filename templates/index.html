@@ -42,22 +42,48 @@
     </nav>
          -->
     <div class="container-fluid py-3" style="background-color: #585858;">
-        <div class="row justify-content-around" style="background-color: #949494;">
-            <div class="col jumbotron">
-                <button><a href="/scrape">Scrape</a></button>
-                <!-- <ul>
-                    {% for scrape in scrapes %}
-                    <li>{{ scrape.scrape_time }}</li>
-                    <li>{{ scrape.mars_news_title }}</li>
-                    {% endfor %}
-                </ul> -->
+        <div class="row">
+            <div class="jumbotron">
+                <h1 class="display-4">Hello, Mars!</h1>
+                <p class="lead">What we know about Mars is always changing and growing, thanks to first Opportunity, then Curiosity, and now Insight.</p>
+                <hr class="my-4">
+                <p>Click the button below to collect the most recent information!</p>
+                <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape</a>
             </div>
         </div>
         <div class="row">
-            <div class="jumbotron">
+            <div class="col-lg-6 col-sm-12 mx-3 my-1">
                 <div>{{ scrapes[0].scrape_time }}</div>
                 <div>{{ scrapes[0].mars_news_title }}</div>
                 <div>{{ scrapes[0].mars_news_p }}</div>
+            </div>
+            <div class="col-lg-4 col-sm-12 mx-3 my-1">
+                <h1>Figures</h1>
+                <hr>
+                <div class="container py-1">
+                    <div class="row py-1">
+                        <div class="col-md-6 col-sm-12 py-3">
+                            <img src="{{ scrapes[0].hemisphere_image_urls[0].url }}" class="img-fluid" alt="{{ scrapes[0].hemisphere_image_urls[0].title }}">
+                            <section class="text-center p-2" style="font-size: 16px;">{{ scrapes[0].hemisphere_image_urls[0].title }}</section>
+                        </div>
+                        <div class="col-md-6 col-sm-12 py-3">
+                            <img src="{{ scrapes[0].hemisphere_image_urls[1].url }}" class="img-fluid" alt="{{ scrapes[0].hemisphere_image_urls[1].title }}">
+                            <section class="text-center p-2" style="font-size: 16px;">{{ scrapes[0].hemisphere_image_urls[1].title }}</section>
+                        </div>
+                    </div>
+                </div>
+                <div class="container py-1">
+                    <div class="row py-1">
+                        <div class="col-md-6 col-sm-12 py-3">
+                            <img src="{{ scrapes[0].hemisphere_image_urls[2].url }}" class="img-fluid" alt="{{ scrapes[2].hemisphere_image_urls[0].title }}">
+                            <section class="text-center p-2" style="font-size: 16px;">{{ scrapes[0].hemisphere_image_urls[2].title }}</section>
+                        </div>
+                        <div class="col-md-6 col-sm-12 py-3">
+                            <img src="{{ scrapes[0].hemisphere_image_urls[3].url }}" class="img-fluid" alt="{{ scrapes[0].hemisphere_image_urls[4].title }}">
+                            <section class="text-center p-2" style="font-size: 16px;">{{ scrapes[0].hemisphere_image_urls[3].title }}</section>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
             <!-- <div class="col-lg-6 col-sm-12 mx-3 my-1" style="background-color: #ffffff;">

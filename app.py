@@ -13,12 +13,12 @@ app = Flask(__name__)
 # create route that renders index.html template
 @app.route("/scrape")
 def scrape_route():
-    import test_scrape
+    import scrape_mars
     conn = 'mongodb://localhost:27017'
     client = pymongo.MongoClient(conn)
     db = client.mars_db
     col = db.scrapes
-    post = test_scrape.scrape()
+    post = scrape_mars.scrape()
     print(post)
     db.col.insert_one(post)
     return redirect("http://127.0.0.1:5000/")
