@@ -1,5 +1,5 @@
 # import libraries
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 import pymongo
 
 conn = 'mongodb://localhost:27017'
@@ -13,14 +13,16 @@ app = Flask(__name__)
 # create route that renders index.html template
 @app.route("/scrape")
 def scrape_route():
-    import scrape_mars
-    post = scrape_mars.scrape()
-    return db.col.insert_one(post)
+    import test_scrape
+    post = test_scrape.scrape()
+    print(post)
+    db.col.insert_one(post)
+    return redirect("http://127.0.0.1:5000/")
 
 @app.route("/")
 def echo():
-    most_recent_scrape = db.col.find_one(sort=[('scrape_time', pymongo.DESCENDING)])
-    return render_template('index.html', scrape = most_recent_scrape)
+    scrapes = db.col.find()
+    return render_template('index.html', scrapes = scrapes)
 
 
 if __name__ == "__main__":
