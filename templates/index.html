@@ -24,11 +24,18 @@
     <div class="container-fluid py-3" style="background-color: #585858;">
         <div class="row justify-content-around" style="background-color: #949494;">
             <div class="col-lg-6 col-sm-12 mx-3 my-1" style="background-color: antiquewhite">
-                <img src="{{scrapes[0].featured_image}}" alt="Featured Image" style="width: 40%; float: right; padding: 5px;">
+                <img src="{{scrapes[0].featured_image}}" alt="Featured Image" style="height: 300px; float: right; padding: 5px; margin-top: 10px;">
                 <section class="news-block">
-                    <p><h1>{{scrapes[0].mars_news_title}}</h1></p>
+                    <p><h1>Recent News</h1></p>
+                    <hr align="left" width="50%">
+                    <p><h3>{{scrapes[0].mars_news_title}}</h3></p>
                     <p style="font-size: 24px;">{{scrapes[0].mars_news_p}}</p>
-                    {{scrapes[0].mars_facts|safe}}
+                </section>
+                <section class="facts-table" style="float: left; width: 50%; padding-right: 30px;">{{scrapes[0].mars_facts|safe}}</section>
+                <section class="weather-block" style="padding: 10px;">
+                    <p><h1>Weather</h1></p>
+                    <hr align="right" width="50%">
+                    <p style="font-size: 24px;">{{scrapes[0].mars_weather}}</p>
                 </section>
             </div>
             <div class="col-lg-4 col-sm-12 mx-3 my-1" style="background-color: antiquewhite">

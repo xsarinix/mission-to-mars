@@ -12,12 +12,18 @@ a {
   position: relative;
 }
 
+#weather-block {
+  font-size: 20px;
+  position: relative;
+  padding: 10px;
+}
+
 .featured-image {
   width: 40%;
 }
 
-.dataframe {
-  font-size: 24px;
+.table-format {
+  font-size: 12px !important;
 }
 
 @media (max-width: 768px) {

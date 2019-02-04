@@ -88,11 +88,16 @@ def scrape():
     weather_only_tweets = []
     for tweet in tweets:
         username = tweet.find('span', class_ = "username u-dir u-textTruncate")
+        pic_link = tweet.find('a', class_="twitter-timeline-link u-hidden")
         if username.text == "@MarsWxReport":
             tweet_content = tweet.find('p', class_ = "TweetTextSize TweetTextSize--normal js-tweet-text tweet-text").text.strip()
+            # Eliminate non-weather tweets
             report_test = tweet_content.split(" ")
             if report_test[0] == "Sol":
-                weather_only_tweets.append(tweet_content)
+                if pic_link is not None:
+                    weather_only_tweets.append(tweet_content.replace(pic_link.text, ""))
+                else:
+                    weather_only_tweets.append(tweet_content)
     mars_weather = weather_only_tweets[0]
     # Update dictionary
     scrape_dict["mars_weather"] = mars_weather
@@ -102,7 +107,7 @@ def scrape():
     facts_table = pd.read_html(facts_url)
     facts_df = facts_table[0]
     facts_df=facts_df.set_index(0)
-    facts_html = facts_df.to_html(header = False, index_names=False).replace("\n", "")
+    facts_html = facts_df.to_html(classes="table table-format", border=0, header = False, index_names=False).replace("\n", "")
     # Update dictionary
     scrape_dict["mars_facts"] = facts_html
     
