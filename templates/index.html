@@ -11,34 +11,34 @@
 
     <title>MARS!</title>
   </head>
-  <header class="container-fluid" style="background-color: aqua">
+  <header class="container-fluid">
     <div class="jumbotron" style="text-align: center;">
         <h1 class="display-4">Hello, Mars!</h1>
-        <p class="lead">What we know about Mars is always changing and growing, thanks to first Opportunity, then Curiosity, and now Insight.</p>
+        <p class="lead">What we know about Mars is always changing and growing, thanks to Opportunity, Curiosity, and Insight.</p>
         <hr class="my-4" style="width: 50%;">
         <p>Click the button below to collect the most recent information!</p>
         <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape</a>
     </div>
   </header>
   <body style="background-color: black;">
-    <div class="container-fluid py-3" style="background-color: #585858;">
-        <div class="row justify-content-around" style="background-color: #949494;">
-            <div class="col-lg-6 col-sm-12 mx-3 my-1" style="background-color: antiquewhite">
-                <img src="{{scrapes[0].featured_image}}" alt="Featured Image" style="height: 300px; float: right; padding: 5px; margin-top: 10px;">
-                <section class="news-block">
+    <div class="container-fluid">
+        <div class="row justify-content-around mx-1">
+            <div class="col-lg-6 col-sm-12" style="background-color: antiquewhite">
+                <img class="m-2" src="{{scrapes[0].featured_image}}" alt="Featured Image" style="height: 300px; float: right; padding: 5px; margin-top: 10px;">
+                <section class="news-block" style="padding: 10px;">
                     <p><h1>Recent News</h1></p>
                     <hr align="left" width="50%">
                     <p><h3>{{scrapes[0].mars_news_title}}</h3></p>
                     <p style="font-size: 24px;">{{scrapes[0].mars_news_p}}</p>
                 </section>
-                <section class="facts-table" style="float: left; width: 50%; padding-right: 30px;">{{scrapes[0].mars_facts|safe}}</section>
+                <section class="facts-table m-2" style="float: left; width: 50%; padding-right: 30px;">{{scrapes[0].mars_facts|safe}}</section>
                 <section class="weather-block" style="padding: 10px;">
                     <p><h1>Weather</h1></p>
                     <hr align="right" width="50%">
                     <p style="font-size: 24px;">{{scrapes[0].mars_weather}}</p>
                 </section>
             </div>
-            <div class="col-lg-4 col-sm-12 mx-3 my-1" style="background-color: antiquewhite">
+            <div class="col-lg-4 col-sm-12" style="background-color: antiquewhite">
                 <h1>Hemispheres</h1>
                 <hr>
                 <div class="container py-1">

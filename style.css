@@ -25,11 +25,3 @@ a {
 .table-format {
   font-size: 12px !important;
 }
-
-@media (max-width: 768px) {
-
-  #news-block {
-    font-size: 12px;
-  }
-
-}
