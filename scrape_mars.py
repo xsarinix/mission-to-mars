@@ -101,7 +101,8 @@ def scrape():
     facts_url = "https://space-facts.com/mars/"
     facts_table = pd.read_html(facts_url)
     facts_df = facts_table[0]
-    facts_html = facts_df.to_html(header = False, index = False).replace("\n", "")
+    facts_df=facts_df.set_index(0)
+    facts_html = facts_df.to_html(header = False, index_names=False).replace("\n", "")
     # Update dictionary
     scrape_dict["mars_facts"] = facts_html
     

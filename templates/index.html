@@ -7,131 +7,58 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <link rel="stylesheet" type="text/css" href="style.css">
 
     <title>MARS!</title>
   </head>
+  <header class="container-fluid" style="background-color: aqua">
+    <div class="jumbotron" style="text-align: center;">
+        <h1 class="display-4">Hello, Mars!</h1>
+        <p class="lead">What we know about Mars is always changing and growing, thanks to first Opportunity, then Curiosity, and now Insight.</p>
+        <hr class="my-4" style="width: 50%;">
+        <p>Click the button below to collect the most recent information!</p>
+        <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape</a>
+    </div>
+  </header>
   <body style="background-color: black;">
-        
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light py-0">
-        <a class="navbar-brand p-2 ml-3 my-0" href="index.html" style="background-color:darkcyan; color:white;"><h3>Latitude <span class="sr-only">(current)</span></h3></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Plots
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" id="max-temp-link" href="max_temp.html">Max Temperature</a>
-                        <a class="dropdown-item" href="humidity.html">Humidity</a>
-                        <a class="dropdown-item" href="cloudiness.html">Cloudiness</a>
-                        <a class="dropdown-item" href="wind_speed.html">Wind Speed</a>
-                    </div>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="comparisons.html">Comparisons</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="data.html">Data</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-         -->
     <div class="container-fluid py-3" style="background-color: #585858;">
-        <div class="row">
-            <div class="jumbotron">
-                <h1 class="display-4">Hello, Mars!</h1>
-                <p class="lead">What we know about Mars is always changing and growing, thanks to first Opportunity, then Curiosity, and now Insight.</p>
-                <hr class="my-4">
-                <p>Click the button below to collect the most recent information!</p>
-                <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-sm-12 mx-3 my-1">
-                <div>{{ scrapes[0].scrape_time }}</div>
-                <div>{{ scrapes[0].mars_news_title }}</div>
-                <div>{{ scrapes[0].mars_news_p }}</div>
-            </div>
-            <div class="col-lg-4 col-sm-12 mx-3 my-1">
-                <h1>Figures</h1>
-                <hr>
-                <div class="container py-1">
-                    <div class="row py-1">
-                        <div class="col-md-6 col-sm-12 py-3">
-                            <img src="{{ scrapes[0].hemisphere_image_urls[0].url }}" class="img-fluid" alt="{{ scrapes[0].hemisphere_image_urls[0].title }}">
-                            <section class="text-center p-2" style="font-size: 16px;">{{ scrapes[0].hemisphere_image_urls[0].title }}</section>
-                        </div>
-                        <div class="col-md-6 col-sm-12 py-3">
-                            <img src="{{ scrapes[0].hemisphere_image_urls[1].url }}" class="img-fluid" alt="{{ scrapes[0].hemisphere_image_urls[1].title }}">
-                            <section class="text-center p-2" style="font-size: 16px;">{{ scrapes[0].hemisphere_image_urls[1].title }}</section>
-                        </div>
-                    </div>
-                </div>
-                <div class="container py-1">
-                    <div class="row py-1">
-                        <div class="col-md-6 col-sm-12 py-3">
-                            <img src="{{ scrapes[0].hemisphere_image_urls[2].url }}" class="img-fluid" alt="{{ scrapes[2].hemisphere_image_urls[0].title }}">
-                            <section class="text-center p-2" style="font-size: 16px;">{{ scrapes[0].hemisphere_image_urls[2].title }}</section>
-                        </div>
-                        <div class="col-md-6 col-sm-12 py-3">
-                            <img src="{{ scrapes[0].hemisphere_image_urls[3].url }}" class="img-fluid" alt="{{ scrapes[0].hemisphere_image_urls[4].title }}">
-                            <section class="text-center p-2" style="font-size: 16px;">{{ scrapes[0].hemisphere_image_urls[3].title }}</section>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-            <!-- <div class="col-lg-6 col-sm-12 mx-3 my-1" style="background-color: #ffffff;">
-                <h1>Latitude & Weather</h1>
-                <hr>
-                <img id="max-temp-figure" src="max_temp.png" alt="Graph" class="img-fluid" style="width: 50%;">
-                <section id="summary-text">
-                    <p>Conventional wisdom states that as you get closer to the equator, the weather gets warmer. But how do we really know? Data's true power lies in its ability to answer questions definitively. This project uses the citipy Python library and data pulled from the OpenWeatherMap API to visualize the weather of over 500 cities across the globe to answer this question.</p>
-                    <p>I generated 1500 random latitudes and longitudes with numpy. Using citipy, these coordinates were matched to the nearest city, with duplicates being dropped, resulting in 618 unique cities. The most recent measurements of cloudiness, humidity, wind speed, and high temperature were then pulled by city and country using the OpenWeatherMap API, skipping unfound cities, for a final count of 536 cities.</p>
-                    <p>The figures to the right are the results of comparing latitude to the four metrics above using matplotlib. Detailed analysis for each plot can be accessed by clicking on the figure or from the Plots dropdown in the navigation bar. An analysis of all graphs can be found under the comparisons page, and the data used for the analysis can be found under the data tab.</p>
+        <div class="row justify-content-around" style="background-color: #949494;">
+            <div class="col-lg-6 col-sm-12 mx-3 my-1" style="background-color: antiquewhite">
+                <img src="{{scrapes[0].featured_image}}" alt="Featured Image" style="width: 40%; float: right; padding: 5px;">
+                <section class="news-block">
+                    <p><h1>{{scrapes[0].mars_news_title}}</h1></p>
+                    <p style="font-size: 24px;">{{scrapes[0].mars_news_p}}</p>
+                    {{scrapes[0].mars_facts|safe}}
                 </section>
             </div>
-            <div class="col-lg-4 col-sm-12 mx-3 my-1" style="background-color: #ffffff;">
-                <h1>Figures</h1>
+            <div class="col-lg-4 col-sm-12 mx-3 my-1" style="background-color: antiquewhite">
+                <h1>Hemispheres</h1>
                 <hr>
                 <div class="container py-1">
                     <div class="row py-1">
                         <div class="col-md-6 col-sm-12 py-3">
-                            <a href="cloudiness.html">
-                                <img src="cloudiness.png" class="img-fluid" alt="Cloudiness">
-                                <section class="text-center p-2" style="font-size: 16px;">Cloudiness</section>
-                            </a>
+                            <img src="{{ scrapes[0].hemisphere_images[0].url }}" class="img-fluid" alt="{{ scrapes[0].hemisphere_images[0].title }}">
+                            <section class="text-center p-2" style="font-size: 16px;">{{ scrapes[0].hemisphere_images[0].title }}</section>
                         </div>
                         <div class="col-md-6 col-sm-12 py-3">
-                            <a href="humidity.html">
-                                <img src="humidity.png" class="img-fluid" alt="Humidity">
-                                <section class="text-center p-2" style="font-size: 16px;">Humidity</section>
-                            </a>
+                            <img src="{{ scrapes[0].hemisphere_images[1].url }}" class="img-fluid" alt="{{ scrapes[0].hemisphere_images[1].title }}">
+                            <section class="text-center p-2" style="font-size: 16px;">{{ scrapes[0].hemisphere_images[1].title }}</section>
                         </div>
                     </div>
                 </div>
                 <div class="container py-1">
                     <div class="row py-1">
                         <div class="col-md-6 col-sm-12 py-3">
-                            <a href="wind_speed.html">
-                                <img src="wind_speed.png" class="img-fluid" alt="Wind Speed">
-                                <section class="text-center p-2" style="font-size: 16px;">Wind Speed</section>
-                            </a>
+                            <img src="{{ scrapes[0].hemisphere_images[2].url }}" class="img-fluid" alt="{{ scrapes[0].hemisphere_images[2].title }}">
+                            <section class="text-center p-2" style="font-size: 16px;">{{ scrapes[0].hemisphere_images[2].title }}</section>
                         </div>
                         <div class="col-md-6 col-sm-12 py-3">
-                            <a href="max_temp.html">
-                                <img src="max_temp.png" class="img-fluid" alt="Max Temp">
-                                <section class="text-center p-2" style="font-size: 16px;">Max Temp</section>
-                            </a>
+                            <img src="{{ scrapes[0].hemisphere_images[3].url }}" class="img-fluid" alt="{{ scrapes[0].hemisphere_images[3].title }}">
+                            <section class="text-center p-2" style="font-size: 16px;">{{ scrapes[0].hemisphere_images[3].title }}</section>
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
 
